@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- <app-header v-bind:props의 속성 이름="상위 컴포넌트의 데이터 이름"></app-header> -->
+        <app-header v-bind:props-data="message"></app-header> <!-- 상위 컴포넌트의 이름 = message,  -->
+        <app-content v-bind:props-content="content"></app-content> <!-- 이해가 안되는데 대문자를 쓸 수 없음, propsContent 불가  -->
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script>
+        let appHeader = {
+            template: '<div>{{ propsData }}</div>',
+            props: ['propsData']
+        }
+
+        let appContent = {
+            template: '<div>content count is {{ propsContent }}</div>',
+            props: ['propsContent']
+        }
+
+
+        new Vue({
+            el: "#app",
+            components: {
+                'app-header': appHeader,
+                'app-content': appContent
+            },
+            data: {
+                message: 'hello',
+                content: 10
+            }
+        })
+
+    </script>
+</body>
+</html>

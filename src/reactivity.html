@@ -4,10 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title> 
-    <!-- 테스트 입니다 -->
-     <!-- 테스트2 에용 ㅋㅋ -->
 </head>
 <body>
-    <div>hello world!!!~</div>
+    <div id = "app"></div>
+
+    <script>
+        let div = document.querySelector("#app");
+        div.innerHTML = 'hello world';
+        let viewModel = {};
+
+        (function() {
+            let temp = 'Hello Vue~~~~~'
+
+            function init(target) {
+                Object.defineProperty(viewModel, 'title', {
+                    get: function() {
+                        return temp
+                    },
+                    set: function(value) {
+                        temp = value
+                        render(target, value)
+                    }
+                });
+            }
+
+
+            function render(target, newValue) {
+                target.innerHTML += newValue
+            }
+
+            init(div)
+        })();
+        // console.log('viewModel =>', String(viewModel));
+        // div.innerHTML += `<div>${viewModel.title}</div>`
+    </script>
 </body>
 </html>
