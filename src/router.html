@@ -8,7 +8,11 @@
 <body>
     
     <div id="app">
-
+        <div>
+            <router-link to="/login">Login</router-link>
+            <router-link to="/main">Main</router-link>
+        </div>
+        <router-view></router-view>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -25,8 +29,9 @@
             template: '<div>main</div>'
         }
 
-        let router = new VueRouter({
+        let Router = new VueRouter({
             // 페이지의 라우팅 정보가 들어감, 배열 하나 하나 당 라우팅 할 페이지 정보를 넣어줌
+            mode: 'history', // http://127.0.0.1:5500/src/router.html#/main -> http://127.0.0.1:5500/main 처럼 사라짐...
             routes : [
                 {
                     path: '/login', // 페이지의 url 이름
@@ -47,7 +52,7 @@
             methods: {
 
             },
-            router: router,
+            router: Router,
         })
     </script>
 
