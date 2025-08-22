@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app">
+        <div style="margin: 10px;">
+            <button v-on:click="addNum">increase</button>
+        </div> 
+        <div>{{ num }}</div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data : {
+                num: 10,
+            },
+            methods: {
+                addNum: function () {
+                    this.num += 1;
+                },
+                logText: function() {
+                    console.log('changed');
+                }
+            },
+            watch: { // 데이터에 변화에 따라서 특정 로직을 실행할 수 있는 vue의 속성, 여기에는 data에 있는 프로퍼티가 들어감, 그러니까 data.num을 watch하고 있어서 바뀔 때 마다 뭔가 처리가 가능한듯?
+                num: function() {
+                    this.logText();
+                }
+            }
+        })
+
+    </script>
+    
+</body>
+</html>

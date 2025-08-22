@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="app">
+        <div>{{ num }}</div>
+        <div>{{ doubleNum }}</div>
+        <div>
+            <button v-on:click="increase">click me</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                num: 10,
+            },
+            computed: { // validation... 단순한 텍스트의 입력을 받아서 거기에 대한 validation 값을 계산하는건 computed를 많이 사용함
+                doubleNum: function() {
+                    return this.num * 2;
+                },
+            },
+            watch: { // 무거운 로직들... 매번 실행되는게 부담스러운 로직을... 
+                num: function(newValue, oldValue) { // watch는 일반적으로 newValue, oldValue 를 받음
+                    console.log('newValue =>', newValue, 'oldValue =>', oldValue);
+                    
+                    this.fetchUserByNumber(newValue)
+                }
+            },
+            methods: {
+                increase: function(){
+                    this.num += 1;
+                },
+                fetchUserByNumber: function(newValue) {
+                    console.log(newValue);
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>

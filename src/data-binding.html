@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app">
+        <div>{{ str }}</div>
+        <p v-bind:id="uuid" v-bind:class="name"> {{ number }}</p>
+        <p> {{ doubleNum }} </p>
+
+        <input type="text" v-model="message" placeholder="edit me">
+        <p>{{message}}</p>
+
+
+
+        <div v-if="loading">
+            <p>Loading....</p>
+            <div>
+                <button v-on:click="login">login</button>
+            </div>
+        </div>
+        <div v-else>
+            <p>test user has been logged in</p>
+            <div>
+                <button v-on:click="logout">logout</button>
+            </div>
+        </div>
+
+
+        <div v-show="loading"> <!-- show 는 display:none 으로 숨기는거고 ,v-if 는 dom에서 아예 지워버림 -->
+            <p>show~~~</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script>
+        
+
+        new Vue({
+            el : "#app",
+            data: {
+                str : 'hello',
+                number : 10,
+                uuid: 'abc1234',
+                name: 'text-blue',
+                loading: true,
+                message : '',
+            },
+            methods: {
+                login: function () {
+                    this.loading = false
+                },
+                logout: function () {
+                    this.loading = true
+                }  
+            },
+            computed: { // 유용한 속성이래용, data가 바뀔 때 같이 계산되서 바뀌는 속성이 computed.... 
+                doubleNum: function () {
+                    return this.number * 2;
+                }
+            }
+        })
+    </script>
+    
+</body>
+</html>
